@@ -1,0 +1,1 @@
+web: sh setup.sh && streamlit run loteria_streamlit_mobile.py
