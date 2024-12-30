@@ -71,6 +71,22 @@ def get_lottery_rules():
             "extra_count": 1,
             "extra_name": "Bonus Ball",
             "flag": "flags/nz.png"
+        },
+        "Lotto 6/49": {
+            "main_range": 49,
+            "main_count": 6,
+            "extra_range": 49,
+            "extra_count": 1,
+            "extra_name": "Bonus Number",
+            "flag": "flags/canada.png"
+        },
+        "Lotto Max": {
+            "main_range": 50,
+            "main_count": 7,
+            "extra_range": 0,
+            "extra_count": 0,
+            "extra_name": None,
+            "flag": "flags/canada_max.png"
         }
     }
 
@@ -93,10 +109,10 @@ def analyze_statistics(combinations):
     return number_frequency, extra_frequency
 
 # Streamlit configuration
-st.set_page_config(page_title="Lottery Helper", layout="centered")
+st.set_page_config(page_title="Trick Millions", layout="centered")
 st.markdown("<style>.stButton>button {background-color: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px;} .stSubheader {font-weight: bold; font-size: 20px;} .stHeader {font-weight: bold; font-size: 24px; color: #4CAF50;}</style>", unsafe_allow_html=True)
 
-st.title("🎰 Welcome to the Lottery Helper!")
+st.title("🎰 Welcome to the Trick Millions!")
 st.subheader("Advanced tools to boost your chances")
 st.write("\n")
 
