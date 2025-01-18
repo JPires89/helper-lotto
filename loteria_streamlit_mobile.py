@@ -87,6 +87,14 @@ def get_lottery_rules():
             "extra_count": 0,
             "extra_name": None,
             "flag": "flags/canada_max.png"
+        },
+        "EuroMillions": {
+            "main_range": 50,
+            "main_count": 5,
+            "extra_range": 12,
+            "extra_count": 2,
+            "extra_name": "Lucky Stars",
+            "flag": "flags/euromillions.png"
         }
     }
 
@@ -109,10 +117,10 @@ def analyze_statistics(combinations):
     return number_frequency, extra_frequency
 
 # Streamlit configuration
-st.set_page_config(page_title="Trick Millions", layout="centered")
+st.set_page_config(page_title="Lottery Helper", layout="centered")
 st.markdown("<style>.stButton>button {background-color: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px;} .stSubheader {font-weight: bold; font-size: 20px;} .stHeader {font-weight: bold; font-size: 24px; color: #4CAF50;}</style>", unsafe_allow_html=True)
 
-st.title("🎰 Welcome to the Trick Millions!")
+st.title("🎰 Welcome to the Lottery Helper!")
 st.subheader("Advanced tools to boost your chances")
 st.write("\n")
 
@@ -167,7 +175,7 @@ if st.button("🎲 Generate Combinations"):
     for i, (main, extra) in enumerate(combinations):
         main_matches = len(set(real_main_draw) & set(main))
         extra_matches = len(set(real_extra_draw) & set(extra)) if real_extra_draw else 0
-        extra_display = f" + {extra[0]} ({lottery['extra_name']})" if extra else ""
+        extra_display = f" + {extra} ({lottery['extra_name']})" if extra else ""
         st.write(f"Combination {i + 1}: {main}{extra_display} - Matches: {main_matches} main, {extra_matches} extra")
 
     # Statistical Analysis
@@ -190,7 +198,7 @@ if st.button("🎲 Generate Combinations"):
     st.write(promising_main)
 
     if extra_freq:
-        promising_extra = extra_df.head(1)
+        promising_extra = extra_df.head(2)  # Adjusted for two Lucky Stars
         st.write(f"**Most Frequent {lottery['extra_name']}:**")
         st.write(promising_extra)
 
@@ -199,7 +207,7 @@ if st.button("🎲 Generate Combinations"):
     winning_combinations = combinations[:3]
     for i, (main, extra) in enumerate(winning_combinations):
         if extra:  # If extra numbers exist
-            st.success(f"Winning Combination {i + 1}: {main} + {extra[0]} ({lottery['extra_name']})")
+            st.success(f"Winning Combination {i + 1}: {main} + {extra} ({lottery['extra_name']})")
         else:  # For lotteries without extra numbers
             st.success(f"Winning Combination {i + 1}: {main}")
 
